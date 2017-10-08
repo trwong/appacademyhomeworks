@@ -71,4 +71,6 @@ class Simon
   end
 end
 
-Simon.new.play
+if $0 == __FILE__
+  Simon.new.play
+end
