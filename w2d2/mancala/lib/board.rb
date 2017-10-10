@@ -32,16 +32,18 @@ class Board
       @cups[i] << :stone
     end
     render
-    next_turn(i + 1)
-    return :prompt if player == @p1 && i == 6
-    return :prompt if player == @p2 && i == 13
-    p @cups[i - 1].length
-    return :switch if @cups[i].length == 1
-    i
+    next_turn(i, player)
   end
 
-  def next_turn(ending_cup_idx)
+  def next_turn(ending_cup_idx, player)
     # helper method to determine what #make_move returns
+    if ending_cup_idx == 6 || ending_cup_idx == 13
+       :prompt
+    elsif @cups[ending_cup_idx].length == 1
+      :switch
+    else
+      ending_cup_idx
+    end
   end
 
   def render
