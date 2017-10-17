@@ -72,7 +72,7 @@ class PlaywrightDBConnection < SQLite3::Database
   include Singleton
 
   def initialize
-    super('playwrights.db')
+    super('plays.db')
     self.type_translation = true
     self.results_as_hash = true
   end
@@ -124,7 +124,7 @@ class Playwright
   def get_plays
     PlaywrightDBConnection.instance.execute(<<-SQL, @name)
       SELECT * FROM playwrights
-      JOIN plays ON plays.id = playwrights.play_id
+      JOIN plays ON plays.playwright_id = playwrights.id
       WHERE playwrights.name = ?
     SQL
   end
