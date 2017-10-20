@@ -2,7 +2,8 @@ class User < ActiveRecord::Base
 
   validates :user_name, :first_name, :last_name, :presence => true
 
-  has_many :posts, :foreign_key => :author_id
+  has_many :posts, 
+  :foreign_key => :author_id
   # SELECT *
   #   FROM posts
   #  WHERE posts.author_id = #{self.id}

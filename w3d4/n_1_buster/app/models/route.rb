@@ -27,9 +27,27 @@ class Route < ApplicationRecord
     bus_hash = Hash.new { |hash, k| hash[k] = [] }
 
     buses.each do |bus|
-      bus_hash[bus.id] << bus.drivers
+      bus_hash[bus.id] << bus.drivers.name
     end
 
     bus_hash
   end
+
+
+  # def better_drivers_query
+  #   buses = self.buses.includes(:drivers)
+  #
+  #   all_drivers = {}
+  #   buses.each do |bus|
+  #     drivers = []
+  #     # will not fire a query for each route since drivers have already been prefetched
+  #     bus.drivers.each do |driver|
+  #       drivers << driver.name
+  #     end
+  #     all_drivers[bus.id] = drivers
+  #   end
+  #
+  #   all_drivers
+  # end
+
 end
