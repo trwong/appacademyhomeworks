@@ -59,6 +59,8 @@ Elephant.paradeHelper = function(ele) {
 //   console.log(elephant.name + ' is trotting by')
 // })
 
+herd.forEach(Elephant.paradeHelper)
+
 function dinerBreakfast() {
   let order = "I'd like cheesy scrambled eggs please.";
   console.log(order);
