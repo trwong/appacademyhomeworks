@@ -13,7 +13,7 @@ class RingBuffer
   # O(1)
   def [](index)
     check_index(index)
-    @array[index]
+    @array[(index + @start_idx) % @capacity]
   end
   
   # O(1)
@@ -24,20 +24,24 @@ class RingBuffer
 
   # O(1)
   def pop
+    raise "index out of bounds" if @length <= 0
     @length -= 1
+    @array[(@start_idx + @length) % @capacity]
   end
 
   # O(1) ammortized
   def push(val)
     @length += 1
     @capacity *= 2 if @length > @capacity
-    @array[@length - 1] = val
+    @array[(@length + @start_idx - 1) % @capacity] = val
   end
 
   # O(1)
   def shift
+    raise "index out of bounds" if @length <= 0
     @start_idx = (@start_idx + 1) % @capacity
     @length -= 1
+    @array[(@start_idx - 1) % @capacity]
   end
 
   # O(1) ammortized
