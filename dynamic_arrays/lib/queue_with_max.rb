@@ -12,18 +12,23 @@ class QueueWithMax
   attr_accessor :store
 
   def initialize
+    @array = RingBuffer.new
+    @sorted_array = RingBuffer.new
   end
 
   def enqueue(val)
+    @array.push(val)
   end
 
   def dequeue
+    @array.pop
   end
 
   def max
   end
 
   def length
+    @array.length
   end
 
 end

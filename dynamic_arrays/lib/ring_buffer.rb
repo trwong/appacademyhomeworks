@@ -32,7 +32,12 @@ class RingBuffer
   # O(1) ammortized
   def push(val)
     @length += 1
-    @capacity *= 2 if @length > @capacity
+    if @length > @capacity
+      @capacity *= 2 
+      # if @start_idx + @length > @capacity / 2
+        
+      # end
+    end
     @array[(@length + @start_idx - 1) % @capacity] = val
   end
 
