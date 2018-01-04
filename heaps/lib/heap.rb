@@ -35,8 +35,10 @@ class BinaryMinHeap
     return [1, 2] if parent_index == 0
     if parent_index * 2 + 2 < len
       return [parent_index * 2 + 1, parent_index * 2 + 2]
-    else
+    elsif parent_index * 2 + 1 < len
       return [parent_index * 2 + 1]
+    else
+      return []
     end
   end
 
@@ -51,12 +53,15 @@ class BinaryMinHeap
     end
 
     children_arr = BinaryMinHeap.child_indices(len, parent_idx)
-    if children_arr.length == 1 || prc.call(array[children_arr[0]],array[children_arr[1]]) == -1
+    if children_arr.empty?
+      return array
+    elsif children_arr.length == 1 || prc.call(array[children_arr[0]],array[children_arr[1]]) == -1
       child = children_arr[0] 
     else
       child = children_arr[1]
     end
 
+    
     return array if child > len - 1
     
     array[child], array[parent_idx] = array[parent_idx], array[child]
