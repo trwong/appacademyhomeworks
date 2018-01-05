@@ -4,7 +4,7 @@ class Array
   def heap_sort!
     arr = self
 
-    return arr if arr == arr.sort
+    # return arr if arr == arr.sort
 
     arr.each_index do |i|
       # next if i.zero?
